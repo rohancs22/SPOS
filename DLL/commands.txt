@@ -1,0 +1,5 @@
+gcc -c -Wall -Werror -fPIC shared.c
+gcc -shared -o libshared.so shared.o
+gcc -L/home/TE/DLL -Wall main.c -o main -lshared
+export LD_LIBRARY_PATH=/home/TE/Dll:$LD_LIBRARY_PATH
+./main

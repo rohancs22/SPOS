@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+int main(int argc, char* argv[]){
+	system("wait");
+	
+	do{
+		char *menu = "\n1.ps\n2.fork\n3.exec\n4.wait\n>";
+	printf("%s", menu);
+	int option,p;
+	
+	scanf("%d", &option);
+	switch(option){
+		case 1:
+			system("ps -A");
+			break;
+		case 2:
+			p=fork();
+			if(p==0)
+			{
+				printf("%d CHILD \n", getpid());
+				//execvp("./exec", argv);
+			}
+			else
+			{
+				printf("%d PARENT \n", getpid());
+				//execvp("./exec", NULL);
+			}
+			break;
+		case 3:
+		    execvp("./exec", argv);
+		    break;
+		case 4:
+		    system("wait");
+		    break;
+			
+		default:
+			printf("Invalid");
+	}
+	}while(1);
+	return 0;
+}
